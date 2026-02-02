@@ -1,0 +1,1 @@
+{"flutter":{"platforms":{"android":{"default":{"projectId":"scentia-edu","appId":"1:797097519489:android:6e7acb5148cb13251d2080","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"scentia-edu","configurations":{"android":"1:797097519489:android:6e7acb5148cb13251d2080","web":"1:797097519489:web:6a26d190af0ff2431d2080"}}}}}}

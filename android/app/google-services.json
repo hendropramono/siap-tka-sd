@@ -1,0 +1,155 @@
+{
+  "project_info": {
+    "project_number": "797097519489",
+    "project_id": "scentia-edu",
+    "storage_bucket": "scentia-edu.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:797097519489:android:6e7acb5148cb13251d2080",
+        "android_client_info": {
+          "package_name": "com.bukabuku_online.siap_tka_sd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "797097519489-ja17qo52ide86d7is2vejseceqid2pu8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBamf8K8qzDj2Ll8TSlwrprwmmrGM4w5dw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "797097519489-ja17qo52ide86d7is2vejseceqid2pu8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "797097519489-1jfa69731j7d8u8ur2deabsf9gvtbran.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.bukabukuonline.scentiaEdu"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:797097519489:android:22695c8cd76bf8fb1d2080",
+        "android_client_info": {
+          "package_name": "com.scentia_edu.latihan_soal_tka_sd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "797097519489-ja17qo52ide86d7is2vejseceqid2pu8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBamf8K8qzDj2Ll8TSlwrprwmmrGM4w5dw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "797097519489-ja17qo52ide86d7is2vejseceqid2pu8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "797097519489-1jfa69731j7d8u8ur2deabsf9gvtbran.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.bukabukuonline.scentiaEdu"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:797097519489:android:b5392c4d2ffae73f1d2080",
+        "android_client_info": {
+          "package_name": "com.scentia_edu.scentia_edu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "797097519489-ja17qo52ide86d7is2vejseceqid2pu8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBamf8K8qzDj2Ll8TSlwrprwmmrGM4w5dw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "797097519489-ja17qo52ide86d7is2vejseceqid2pu8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "797097519489-1jfa69731j7d8u8ur2deabsf9gvtbran.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.bukabukuonline.scentiaEdu"
+              }
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-3725093132443000~7859696100"
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:797097519489:android:e7e5d1d1f7338fc31d2080",
+        "android_client_info": {
+          "package_name": "com.scentia_edu.scentia_edu_admin_new"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "797097519489-ja17qo52ide86d7is2vejseceqid2pu8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBamf8K8qzDj2Ll8TSlwrprwmmrGM4w5dw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "797097519489-ja17qo52ide86d7is2vejseceqid2pu8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "797097519489-1jfa69731j7d8u8ur2deabsf9gvtbran.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.bukabukuonline.scentiaEdu"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
