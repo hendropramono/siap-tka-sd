@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:siap_tka_sd/models/paket_soal_app_model.dart';
+import 'package:siap_tka_sd/pages/question_page.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key, required this.title});
@@ -20,22 +21,40 @@ class MyHomePage extends StatelessWidget {
           actions: [
             Column(
               children: [
-                ListTile(
-                  title: const Text('Matematika'),
-                  leading: const Icon(Icons.calculate, color: Colors.blue),
-                  onTap: () {
-                    Navigator.pop(context);
-                    // Tambahkan navigasi ke soal Matematika di sini
-                  },
-                ),
-                ListTile(
-                  title: const Text('Bahasa Indonesia'),
-                  leading: const Icon(Icons.book, color: Colors.orange),
-                  onTap: () {
-                    Navigator.pop(context);
-                    // Tambahkan navigasi ke soal Bahasa Indonesia di sini
-                  },
-                ),
+                if (paket.matematikaPackageId != null)
+                  ListTile(
+                    title: const Text('Matematika'),
+                    leading: const Icon(Icons.calculate, color: Colors.blue),
+                    onTap: () {
+                      Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => QuestionPage(
+                            packageId: paket.matematikaPackageId!,
+                            subjectTitle: 'Matematika - ${paket.title}',
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                if (paket.indonesiaPackageId != null)
+                  ListTile(
+                    title: const Text('Bahasa Indonesia'),
+                    leading: const Icon(Icons.book, color: Colors.orange),
+                    onTap: () {
+                      Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => QuestionPage(
+                            packageId: paket.indonesiaPackageId!,
+                            subjectTitle: 'Bahasa Indonesia - ${paket.title}',
+                          ),
+                        ),
+                      );
+                    },
+                  ),
               ],
             ),
           ],

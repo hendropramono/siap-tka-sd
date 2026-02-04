@@ -3,19 +3,22 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class PaketSoalApp {
   final String title;
   final Timestamp createdAt;
-  // final String packageId;
+  final String? matematikaPackageId;
+  final String? indonesiaPackageId;
 
   PaketSoalApp({
     required this.title,
     required this.createdAt,
-    // required this.packageId,
+    this.matematikaPackageId,
+    this.indonesiaPackageId,
   });
 
   factory PaketSoalApp.fromJson(Map<String, dynamic> json) {
     return PaketSoalApp(
       title: json['title'] as String,
       createdAt: json['createdAt'] as Timestamp,
-      // packageId: json['packageId'] as String,
+      matematikaPackageId: json['matematikaPackageId'] as String?,
+      indonesiaPackageId: json['indonesiaPackageId'] as String?,
     );
   }
 
@@ -23,7 +26,8 @@ class PaketSoalApp {
     return {
       'title': title,
       'createdAt': createdAt,
-      // 'packageId': packageId,
+      'matematikaPackageId': matematikaPackageId,
+      'indonesiaPackageId': indonesiaPackageId,
     };
   }
 }
