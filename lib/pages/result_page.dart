@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:siap_tka_sd/models/question_models.dart';
+import 'package:siap_tka_sd/pages/review_page.dart';
 
 class ResultPage extends StatelessWidget {
   final int score;
   final int totalQuestions;
   final int correctAnswers;
+  final List<Question> questions;
+  final Map<int, dynamic> userAnswers;
 
   const ResultPage({
     super.key,
     required this.score,
     required this.totalQuestions,
     required this.correctAnswers,
+    required this.questions,
+    required this.userAnswers,
   });
 
   @override
@@ -87,6 +93,30 @@ class ResultPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 48),
+              SizedBox(
+                width: double.infinity,
+                child: OutlinedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ReviewPage(
+                          questions: questions,
+                          userAnswers: userAnswers,
+                        ),
+                      ),
+                    );
+                  },
+                  style: OutlinedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: const Text('Lihat Review Jawaban'),
+                ),
+              ),
+              const SizedBox(height: 12),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(

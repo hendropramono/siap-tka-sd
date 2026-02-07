@@ -133,7 +133,6 @@ class _QuestionPageState extends State<QuestionPage> {
       }
     }
 
-    // Hitung skor akhir skala 100
     final finalScore = (maxScore > 0) ? (totalScore / maxScore * 100).round() : 0;
 
     Navigator.pushReplacement(
@@ -143,6 +142,8 @@ class _QuestionPageState extends State<QuestionPage> {
           score: finalScore,
           totalQuestions: _questions!.length,
           correctAnswers: totalCorrect,
+          questions: _questions!,
+          userAnswers: _userAnswers,
         ),
       ),
     );
@@ -153,21 +154,21 @@ class _QuestionPageState extends State<QuestionPage> {
     if (_isLoading) {
       return Scaffold(
         appBar: AppBar(title: Text(widget.subjectTitle)),
-        body: const Center(child: CircularProgressIndicator()),
+        body: const SafeArea(child: Center(child: CircularProgressIndicator())),
       );
     }
 
     if (_errorMessage != null) {
       return Scaffold(
         appBar: AppBar(title: Text(widget.subjectTitle)),
-        body: Center(child: Text(_errorMessage!)),
+        body: SafeArea(child: Center(child: Text(_errorMessage!))),
       );
     }
 
     if (_questions == null || _questions!.isEmpty) {
       return Scaffold(
         appBar: AppBar(title: Text(widget.subjectTitle)),
-        body: const Center(child: Text('Tidak ada soal tersedia')),
+        body: const SafeArea(child: Center(child: Text('Tidak ada soal tersedia'))),
       );
     }
 
@@ -178,69 +179,71 @@ class _QuestionPageState extends State<QuestionPage> {
       appBar: AppBar(
         title: Text(widget.subjectTitle),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            LinearProgressIndicator(
-              value: (questions.isEmpty) ? 0 : (_currentIndex + 1) / questions.length,
-            ),
-            const SizedBox(height: 16),
-            Text(
-              'Soal ${_currentIndex + 1} dari ${questions.length}',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            const SizedBox(height: 8),
-            if (currentQuestion.instructionText != null)
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              LinearProgressIndicator(
+                value: (questions.isEmpty) ? 0 : (_currentIndex + 1) / questions.length,
+              ),
+              const SizedBox(height: 16),
               Text(
-                currentQuestion.instructionText!,
-                style: const TextStyle(
-                    fontStyle: FontStyle.italic, color: Colors.grey),
+                'Soal ${_currentIndex + 1} dari ${questions.length}',
+                style: Theme.of(context).textTheme.titleMedium,
               ),
-            const SizedBox(height: 16),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    if (currentQuestion.imageUrl != null)
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 16.0),
-                        child: Image.network(
-                          currentQuestion.imageUrl!,
-                          fit: BoxFit.contain,
+              const SizedBox(height: 8),
+              if (currentQuestion.instructionText != null)
+                Text(
+                  currentQuestion.instructionText!,
+                  style: const TextStyle(
+                      fontStyle: FontStyle.italic, color: Colors.grey),
+                ),
+              const SizedBox(height: 16),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (currentQuestion.imageUrl != null)
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 16.0),
+                          child: Image.network(
+                            currentQuestion.imageUrl!,
+                            fit: BoxFit.contain,
+                          ),
                         ),
-                      ),
-                    ...currentQuestion.questionContent.map((content) =>
-                        Text(content.toPlainText(),
-                            style: const TextStyle(fontSize: 18))),
-                    const SizedBox(height: 24),
-                    _buildOptions(currentQuestion),
-                  ],
+                      ...currentQuestion.questionContent.map((content) =>
+                          Text(content.toPlainText(),
+                              style: const TextStyle(fontSize: 18))),
+                      const SizedBox(height: 24),
+                      _buildOptions(currentQuestion),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ElevatedButton(
-                  onPressed: _currentIndex > 0
-                      ? () => setState(() => _currentIndex--)
-                      : null,
-                  child: const Text('Sebelumnya'),
-                ),
-                ElevatedButton(
-                  onPressed: _currentIndex < questions.length - 1
-                      ? () => setState(() => _currentIndex++)
-                      : _calculateResult,
-                  child: Text(_currentIndex < questions.length - 1
-                      ? 'Berikutnya'
-                      : 'Selesai'),
-                ),
-              ],
-            ),
-          ],
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ElevatedButton(
+                    onPressed: _currentIndex > 0
+                        ? () => setState(() => _currentIndex--)
+                        : null,
+                    child: const Text('Sebelumnya'),
+                  ),
+                  ElevatedButton(
+                    onPressed: _currentIndex < questions.length - 1
+                        ? () => setState(() => _currentIndex++)
+                        : _calculateResult,
+                    child: Text(_currentIndex < questions.length - 1
+                        ? 'Berikutnya'
+                        : 'Selesai'),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
