@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:siap_tka_sd/models/question_models.dart';
 import 'package:siap_tka_sd/models/rich_text_content.dart';
 import 'package:siap_tka_sd/pages/result_page.dart';
+import 'package:siap_tka_sd/widgets/rich_text_viewer.dart';
 
 class QuestionPage extends StatefulWidget {
   final String packageId;
@@ -214,9 +215,10 @@ class _QuestionPageState extends State<QuestionPage> {
                             fit: BoxFit.contain,
                           ),
                         ),
-                      ...currentQuestion.questionContent.map((content) =>
-                          Text(content.toPlainText(),
-                              style: const TextStyle(fontSize: 18))),
+                      RichTextViewer(
+                        content: currentQuestion.questionContent,
+                        defaultTextStyle: const TextStyle(fontSize: 18),
+                      ),
                       const SizedBox(height: 24),
                       _buildOptions(currentQuestion),
                     ],
@@ -254,7 +256,7 @@ class _QuestionPageState extends State<QuestionPage> {
       return Column(
         children: question.options.map((option) {
           return RadioListTile<String>(
-            title: Text(option.content.map((c) => c.toPlainText()).join(' ')),
+            title: RichTextViewer(content: option.content),
             value: option.id,
             groupValue: _userAnswers[_currentIndex] as String?,
             onChanged: (value) {
@@ -270,7 +272,7 @@ class _QuestionPageState extends State<QuestionPage> {
       return Column(
         children: question.options.map((option) {
           return CheckboxListTile(
-            title: Text(option.content.map((c) => c.toPlainText()).join(' ')),
+            title: RichTextViewer(content: option.content),
             value: selectedIds.contains(option.id),
             onChanged: (bool? checked) {
               setState(() {
@@ -294,9 +296,8 @@ class _QuestionPageState extends State<QuestionPage> {
             child: Row(
               children: [
                 Expanded(
-                    child: Text(statement.content
-                        .map((c) => c.toPlainText())
-                        .join(' '))),
+                  child: RichTextViewer(content: statement.content),
+                ),
                 const Text('B'),
                 Radio<bool>(
                   value: true,

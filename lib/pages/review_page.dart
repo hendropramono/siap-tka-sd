@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:siap_tka_sd/models/question_models.dart';
 import 'package:siap_tka_sd/models/rich_text_content.dart';
+import 'package:siap_tka_sd/widgets/rich_text_viewer.dart';
 
 class ReviewPage extends StatelessWidget {
   final List<Question> questions;
@@ -67,8 +68,10 @@ class ReviewPage extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 12),
-            ...question.questionContent.map((c) => Text(c.toPlainText(),
-                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500))),
+            RichTextViewer(
+              content: question.questionContent,
+              defaultTextStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+            ),
             const SizedBox(height: 16),
             const Text('Jawaban Anda:', style: TextStyle(fontWeight: FontWeight.bold)),
             _buildAnswerDisplay(question, userAnswer, isUser: true),
@@ -119,23 +122,42 @@ class ReviewPage extends StatelessWidget {
     if (question is MultipleChoiceQuestion) {
       final option = question.options.firstWhere((o) => o.id == answer,
           orElse: () => Option(id: '', content: [TextData(text: 'Unknown')]));
-      return Text(option.content.map((c) => c.toPlainText()).join(' '));
+      return RichTextViewer(content: option.content);
     } else if (question is MultiSelectQuestion) {
       final List<String> ids = List<String>.from(answer);
-      final List<String> labels = ids.map((id) {
-        final opt = question.options.firstWhere((o) => o.id == id,
-            orElse: () => Option(id: '', content: [TextData(text: 'Unknown')]));
-        return opt.content.map((c) => c.toPlainText()).join(' ');
-      }).toList();
-      return Text(labels.join(', '));
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: ids.map((id) {
+          final opt = question.options.firstWhere((o) => o.id == id,
+              orElse: () => Option(id: '', content: [TextData(text: 'Unknown')]));
+          return Row(
+            children: [
+              const Text('• '),
+              Expanded(child: RichTextViewer(content: opt.content)),
+            ],
+          );
+        }).toList(),
+      );
     } else if (question is ComplexMultipleChoiceQuestion) {
       final Map<String, bool> map = Map<String, bool>.from(answer);
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: question.statements.map((s) {
           final val = map[s.id];
-          return Text('${s.content.map((c) => c.toPlainText()).join(' ')}: ${val == true ? 'Benar' : (val == false ? 'Salah' : '-')}',
-          style: TextStyle(color: isUser ? null : Colors.green));
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 2.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(child: RichTextViewer(content: s.content)),
+                const SizedBox(width: 8),
+                Text(
+                  ': ${val == true ? 'Benar' : (val == false ? 'Salah' : '-')}',
+                  style: TextStyle(color: isUser ? null : Colors.green),
+                ),
+              ],
+            ),
+          );
         }).toList(),
       );
     }
