@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:siap_tka_sd/models/paket_soal_app_model.dart';
+import 'package:siap_tka_sd/pages/about_page.dart';
 import 'package:siap_tka_sd/pages/question_page.dart';
 
 class MyHomePage extends StatelessWidget {
@@ -93,7 +94,24 @@ class MyHomePage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const SizedBox(height: 24),
+              Padding(
+                padding: const EdgeInsets.only(top: 16.0, right: 16.0),
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: IconButton(
+                    icon: const Icon(Icons.info_outline),
+                    color: colorScheme.onPrimary,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const AboutPage(),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
               Text(
                 title,
                 textAlign: TextAlign.center,
