@@ -34,7 +34,7 @@ class ResultPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Skor Anda',
+                'Nilai Kamu',
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
               const SizedBox(height: 16),
@@ -47,12 +47,23 @@ class ResultPage extends StatelessWidget {
                   border: Border.all(color: colorScheme.primary, width: 4),
                 ),
                 child: Center(
-                  child: Text(
-                    '$score',
-                    style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                          color: colorScheme.primary,
-                          fontWeight: FontWeight.bold,
-                        ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        '$score',
+                        style: Theme.of(context).textTheme.displayLarge?.copyWith(
+                              color: colorScheme.primary,
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
+                      Text(
+                        '/ 100',
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                              color: colorScheme.primary.withOpacity(0.7),
+                            ),
+                      ),
+                    ],
                   ),
                 ),
               ),
