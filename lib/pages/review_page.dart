@@ -70,7 +70,7 @@ class ReviewPage extends StatelessWidget {
             const SizedBox(height: 12),
             RichTextViewer(
               content: question.questionContent,
-              defaultTextStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
             ),
             const SizedBox(height: 16),
             const Text('Jawaban Anda:', style: TextStyle(fontWeight: FontWeight.bold)),

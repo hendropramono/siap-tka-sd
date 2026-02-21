@@ -217,7 +217,7 @@ class _QuestionPageState extends State<QuestionPage> {
                         ),
                       RichTextViewer(
                         content: currentQuestion.questionContent,
-                        defaultTextStyle: const TextStyle(fontSize: 18),
+                        style: const TextStyle(fontSize: 18),
                       ),
                       const SizedBox(height: 24),
                       _buildOptions(currentQuestion),

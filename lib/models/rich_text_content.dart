@@ -19,11 +19,19 @@ abstract class RichTextContent {
   }
 }
 
-/// Representasi konten teks sederhana.
+/// Representasi konten teks sederhana dengan dukungan pemformatan dasar.
 class TextData extends RichTextContent {
   final String text;
+  final bool isBold;
+  final bool isItalic;
+  final bool isUnderline;
 
-  TextData({required this.text});
+  TextData({
+    required this.text,
+    this.isBold = false,
+    this.isItalic = false,
+    this.isUnderline = false,
+  });
 
   @override
   String toPlainText() => text;
@@ -32,10 +40,18 @@ class TextData extends RichTextContent {
   Map<String, dynamic> toJson() => {
     'type': 'text',
     'text': text,
+    'isBold': isBold,
+    'isItalic': isItalic,
+    'isUnderline': isUnderline,
   };
 
   factory TextData.fromJson(Map<String, dynamic> json) {
-    return TextData(text: json['text']);
+    return TextData(
+      text: json['text'],
+      isBold: json['isBold'] ?? false,
+      isItalic: json['isItalic'] ?? false,
+      isUnderline: json['isUnderline'] ?? false,
+    );
   }
 }
 
